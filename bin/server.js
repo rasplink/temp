@@ -6,10 +6,12 @@ const jsdom = require("jsdom");
 const colors = require("colors");
 const mimes = require("./mimes.json");
 const wsPort = 8090;
+const internalIp = "192.168.1.200";
+const socketUrl = "ws://" + internalIp + ":" + wsPort;
 
 function handleWsFile() {
   let file = fs.readFileSync(path.resolve(__dirname, "./ws.js")).toString();
-  file = file.replace(/{{port}}/, wsPort);
+  file = file.replace(/{{socketUrl}}/, socketUrl);
   file = "<script>" + file + "</script>";
   return file;
 }
@@ -34,7 +36,7 @@ function getPath(entry, url) {
 function serve(entry, port) {
   return new Promise((resolve, reject) => {
     const PORT = port ? port : process.env.PORT || 8000;
-    const domain = `http://localhost:${PORT}`;
+    const domain = `http://${internalIp}:${PORT}`;
 
     const server = http.createServer(handler);
     function handler(req, res) {

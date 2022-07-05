@@ -4,7 +4,7 @@
     const interval = 500;
     const maxAttempts = 30;
     let attempts = 0;
-    const socketUrl = "ws://localhost:{{port}}";
+    const socketUrl = "{{socketUrl}}";
     let socket = new WebSocket(socketUrl);
 
     socket.onmessage = function (res) {
@@ -31,8 +31,8 @@
       else if (error && !res.data.error) error.innerHTML = "";
       
       if (temp && humidity) {
-        temp.innerHTML = res.data.temp + " c";
-        humidity.innerHTML = res.data.humidity + " %";
+        temp.innerHTML = res.data.temp.toFixed(1) + " c";
+        humidity.innerHTML = res.data.humidity.toFixed(1) + " %";
       }
     }
 

@@ -8,12 +8,6 @@
 
 # Get started
 
-### for nodejs
-```
-npm i 
-npm run dev
-```
-
 ### for python
 ```
 sudo apt-get update
@@ -23,6 +17,12 @@ sudo python3 -m pip install --upgrade pip setuptools wheel
 sudo pip3 install --install-option="--force-pi" Adafruit_DHT
 ```
 `you have to run humidity.py file with python3 not 2`
+
+### for nodejs
+```
+npm i 
+npm run dev
+```
 
 #### Sensor
 ![sensor](./img/sensor.webp)
