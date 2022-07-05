@@ -6,12 +6,13 @@
   "main": "bin/index.js",
   "scripts": {
     "dev": "node bin/index.js dev",
-    "build": "node bin/index.js build"
+    "start": "concurrently \"npm run dev\" \"python3 humidity.py\""
   },
   "author": "Eissa Saber",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.4.0",
+    "concurrently": "^7.2.2",
     "cross-spawn": "^7.0.3",
     "jsdom": "latest",
     "nodemon": "^2.0.15",
