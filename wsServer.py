@@ -1,12 +1,7 @@
 import asyncio
 import websockets
-
-import time
-import random
+import Adafruit_DHT
 import json
-
-tempList = [10, 20, 30, 40, 50,60,70,80,90,100]
-humidityList = [10, 20, 30, 40, 50,60,70,80,90,100]
 
 def ws(PORT):
     print("ws listening on Port " + str(PORT))
@@ -16,10 +11,16 @@ def ws(PORT):
             if msg == "connected":
                 print("A client just connected")
                 while True:
-                    dic = {"msg": "sensor", "data": {"temp": random.choice(tempList), "humidity": random.choice(humidityList)}}
-                    print(dic)
-                    await ws.send(json.dumps(dic))
-                    time.sleep(3)
+                    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 4)
+                    if humidity is not None and temperature is not None:
+                        # print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
+                        dic = {"msg": "sensor", "data": {"temp": temperature, "humidity": humidity}}
+                        print(dic)
+                        await ws.send(json.dumps(dic))
+                    else:
+                        dic = {"msg": "sensor", "data": {"error": "Failed to fetch data from sensor"}}
+                        print(dic)
+                        await ws.send(json.dumps(dic))
 
     start_server = websockets.serve(echo, "localhost", PORT)
     asyncio.get_event_loop().run_until_complete(start_server)

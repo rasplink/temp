@@ -50,8 +50,12 @@ gauge2.set(0);
 // update
 const humidityNum = document.getElementById("humidityNum");
 const tempNum = document.getElementById("tempNum");
+const error = document.getElementById("error");
 window.addEventListener("sensor", (e) => {
   const obj = e.detail;
+  if (obj.error) return error.textContent = obj.error;
+  else error.textContent = "";
+  
   gauge.set(obj.temp);
   tempNum.textContent = obj.temp;
 
