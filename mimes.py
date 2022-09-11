@@ -1,4 +1,4 @@
-[
+mimesList = [
   {
     "ext": ".aac",
     "mime": "audio/aac"

@@ -1,0 +1,60 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.5px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #141526;
+  color: #9193a8;
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-gap: 50px 0;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+}
+
+.sensor {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+
+h3 {
+  margin: 0 0 20px 0;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.currentNum {
+  margin-top: -30px;
+}
+
+.nums {
+  margin: 0;
+  font-weight: normal;
+  font-size: 25px;
+  color: white;
+}
+
+.unit {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+  color: #9193a8;
+  margin-top: 5px;
+  display: block;
+}
+
+@media(min-width: 768px){
+  main {
+    grid-template-columns: 1fr 1fr;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}

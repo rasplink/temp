@@ -4,29 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./olum-ui.min.css" />
-    <title>Humidity sensor</title>
-    <style>
-      main {
-        justify-items: center;
-        padding: 50px;
-        grid-gap: 20px;
-        font-size: 20px;
-      }
-      #error {
-        text-align: center;
-        color: firebrick;
-        margin-top: 40px;
-      }
-    </style>
+    <title>Temperature and Humidity Sensor</title>
+    <link rel="stylesheet" href="./app.css" />
   </head>
   <body>
-    <div id="error"></div>
-    <main class="o-grid">
-      <span class="col=1:2 row=1:2">Humidity</span>
-      <span class="col=2:3 row=1:2">Temperature</span>
-      <span id="humidity" class="col=1:2 row=2:3">0 %</span>
-      <span id="temp" class="col=2:3 row=2:3">0 c</span>
+    <main>
+      <div class="sensor">
+        <h3>Temperature</h3>
+        <canvas id="temp"></canvas>
+        <section class="currentNum">
+          <p class="nums" id="tempNum">0</p>
+          <span class="unit">c</span>
+        </section>
+      </div>
+      <div class="sensor">
+        <h3>Humidity</h3>
+        <canvas id="humidity"></canvas>
+        <section class="currentNum">
+          <p class="nums" id="humidityNum">0</p>
+          <span class="unit">%</span>
+        </section>
+      </div>
     </main>
+    <script src="./gauge.min.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
