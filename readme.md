@@ -1,47 +1,52 @@
-# https://github.com/adafruit/Adafruit_CircuitPython_DHT
+> An IOT project for displaying Temperature and Humidity `wirelessly`
+
+### Requirements:
+- Hardware:
+    - An raspberry pi (used: v4 model B)
+    - Power bank (5V, 3A) for raspberry pi 4 or a normal charger with the same current and voltage
+    - DHT22 Temperature and Humidity sensor
+    - Jumper wires
+    - Constant resistor min: 220 ohm
+
+- Software:
+    - Any code editor (used: vs code)
+    - python3 
+    - pip3 
+
+### Setting up the pi with os and configs
+- download [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+- add your configs including your wifi network in the Imager settings
+- after booting the os on the pi it should be connected automatically on your wifi network, after that you need to make its ip fixed for using it later in code
+
+### Wiring
+- connect GIO pin 4 (Physical pin 7) of raspberry pi with the const resistor and then connect that const resistor to data pin of DHT22 sensor (GPIO4---resistor---sensor)
+- connect the 3.3v pin of raspberry pi to +ve pin of sensor
+- connect any gnd pin of raspberry pi to -ve pin of sensor
+- plug-in the 5v 3a power bank/charger to the pi
 
 
-> using DHT22 AM2302 Digital Temperature and Humidity sensor via raspberry pi 4 and using nodejs to make a realtime app for displaying the measurements alongside with python3 to read data from the sensor
+### Connecting to PI via ssh
+- open your terminal and run `ssh userName@xxx.xxx.x.xx` (replace userName with pi userName and xxx with pi ip)
+- copy this project to pi via `scp -r path/to/project piUserName@piIp:path/to/desired/dir/on/pi
+`
 
-# Requirement
-1. raspberry pi 
-2. DHT22 Humidity sensor
-3. nodejs installed
-4. python3 installed with `Adafruit_DHT` library
+### Installing python3 modules on the PI
 
-# Get started
-
-### for python
-```
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install python3-dev python3-pip
-sudo python3 -m pip install --upgrade pip setuptools wheel
-sudo pip3 install --install-option="--force-pi" Adafruit_DHT
+
+python3 -m pip install --upgrade pip setuptools wheel
+pip3 install adafruit-circuitpython-dht
+pip3 install multiprocess
+pip3 install websockets
 ```
-`you have to run humidity.py file with python3 not 2`
+> This is the [current working adafruit](https://github.com/adafruit/Adafruit_CircuitPython_DHT) module for DHT22
 
-### for nodejs
+
+#### Development server 
+```bash
+python3 index.py
 ```
-npm i 
-npm run dev
-```
 
-#### Sensor
-![sensor](./img/sensor.webp)
-1. Pin 1 is VCC (Power Supply)
-2. Pin 2 is DATA (The data signal)
-3. Pin 3 is NULL (Do not connect)
-4. Pin 4 is GND (Ground)
-
-#### Diagram
-![diagram](./img/diagram.webp)
-
-1. Place a 10k resistor between Pin 1 and Pin 2 of the DHT22
-2. Wire Pin 1 of the DHT22 to Physical Pin 1 (3v3) on the Pi
-3. Wire Pin 2 of the DHT22 to Physical Pin 7 (GPIO4) on the Pi
-4. Wire Pin 4 of the DHT22 to Physical Pin 6 (GND) on the Pi
-
-
-#### Gpio pins
-![diagram](./img/gpio.webp)
