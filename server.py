@@ -2,7 +2,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from mimes import mimesList
 import re
 
-def serve(root = "", PORT = 3000, wsPort = 8090):
+def serve(root = "", PORT = 3000, wsPort = 8090, ip = "127.0.0.1"):
     if root != "": root = root + "/"
     skippedRoutes = ["/favicon.ico", "/service-worker.js"]
 
@@ -16,7 +16,7 @@ def serve(root = "", PORT = 3000, wsPort = 8090):
                 self.send_header("content-type", "text/html")
                 # get ws.js content and bind ws port
                 jsStr = open("wsClient.js").read()
-                jsStr = re.sub("{{port}}",  str(wsPort), jsStr)
+                jsStr = re.sub("{{url}}",  "ws://"+ip+":" + str(wsPort), jsStr)
                 # get html content and bind ws logic
                 htmlStr = open(root + "index.html").read()
                 file = re.sub("</body>",  "<script>" + jsStr + "</script></body>", htmlStr)
@@ -37,6 +37,6 @@ def serve(root = "", PORT = 3000, wsPort = 8090):
             self.end_headers()
             self.wfile.write(bytes(file, 'utf-8')) 
 
-    server = HTTPServer(("", PORT), reqHandler)
-    print("serving: http://localhost:" + str(PORT))
+    server = HTTPServer((ip, PORT), reqHandler)
+    print("serving: http://"+ip+":" + str(PORT))
     server.serve_forever()

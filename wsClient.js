@@ -3,7 +3,7 @@
     const interval = 500;
     const maxAttempts = 30;
     let attempts = 0;
-    const socketUrl = "ws://localhost:{{port}}";
+    const socketUrl = "{{url}}";
     let socket = new WebSocket(socketUrl);
 
     socket.onopen = function () {
