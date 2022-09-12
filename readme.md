@@ -2,8 +2,8 @@
 
 ### Requirements:
 - Hardware:
-    - An raspberry pi (used: v4 model B)
-    - Power bank (5V, 3A) for raspberry pi 4 or a normal charger with the same current and voltage
+    - A raspberry pi (used: v4 model B)
+    - Power bank (5V, 3A) for raspberry pi 4 or a charger with the same current and voltage
     - DHT22 Temperature and Humidity sensor
     - Jumper wires
     - Constant resistor min: 220 ohm
@@ -16,10 +16,10 @@
 ### Setting up the pi with os and configs
 - download [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 - add your configs including your wifi network in the Imager settings
-- after booting the os on the pi it should be connected automatically on your wifi network, after that you need to make its ip fixed for using it later in code
+- after booting the os on the pi it should be connected automatically on your wifi network
 
 ### Wiring
-- connect GIO pin 4 (Physical pin 7) of raspberry pi with the const resistor and then connect that const resistor to data pin of DHT22 sensor (GPIO4---resistor---sensor)
+- connect GIO pin 4 (Physical pin 7) of raspberry pi with the const resistor and then connect that const resistor to data pin of DHT22 sensor (GPIO4-->resistor-->sensor)
 - connect the 3.3v pin of raspberry pi to +ve pin of sensor
 - connect any gnd pin of raspberry pi to -ve pin of sensor
 - plug-in the 5v 3a power bank/charger to the pi
